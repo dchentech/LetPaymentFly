@@ -1,0 +1,4 @@
+= form_tag "/payment/#{params[:id]}/buy", :method => :post do
+  = field_set_tag do
+    = label_tag :desc, 'Item 3, $80.'
+    = submit_tag 'Buy it!'
