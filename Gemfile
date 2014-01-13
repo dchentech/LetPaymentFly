@@ -7,6 +7,12 @@ gem 'rails', '4.0.2'
 gem 'sqlite3'
 
 gem 'haml'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'less-rails'
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails'
+gem 'simple_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
