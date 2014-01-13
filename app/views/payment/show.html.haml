@@ -1,4 +1,10 @@
-= form_tag "/payment/#{params[:id]}/buy", :method => :post do
+%div
+  %span Please visit order list at
+  %span= link_to "resque", "/resque/overview"
+
+%hr
+
+= form_tag "/payment/#{@test_item_id}/buy", :method => :post do
   = field_set_tag do
-    = label_tag :desc, 'Item 3, $80.'
+    = label_tag :desc, "Item #{@test_item_id}, $80."
     = submit_tag 'Buy it!'

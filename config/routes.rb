@@ -1,4 +1,6 @@
 LetPaymentFly::Application.routes.draw do
+  mount Resque::Server => '/resque'
+
   resources :payment do
     member do
       post :buy
