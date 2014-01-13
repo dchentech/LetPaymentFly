@@ -1,5 +1,39 @@
-Waiting!
+.status
+.link.hide= link_to "Buy another one.", "/"
 
 :javascript
+  var item_id = #{params[:id].to_json};
+
   $(document).ready(function() {
+    // loop status
+    var status_int = 0;
+    var status_interval = setInterval(function() {
+      status_int += 1;
+      $(".status").text("waiting" + Array((status_int % 4) + 1).join('*'));
+    }, 500);
+
+    // check payment status
+    var try_time = 0;
+    var max_try_time = 6;
+    var check_interval = setInterval(function() {
+      $.getJSON("/payment/" + item_id + "/check.json", function(data) {
+        try_time += 1;
+        console.log(data);
+        if (data.status == 'waiting') { return false; }
+        if (try_time > max_try_time) {
+          clearInterval(check_interval);
+          clearInterval(status_interval);
+        }
+
+        if (data.status == 'success') {
+          $(".status").text("Payment success!");
+          clearInterval(check_interval);
+          clearInterval(status_interval);
+        } else {
+          $(".status").text("Payment timeout!");
+        }
+        $(".link").show();
+      });
+    }, 500);
+
   });

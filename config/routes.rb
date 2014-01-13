@@ -4,6 +4,7 @@ LetPaymentFly::Application.routes.draw do
   resources :payment do
     member do
       post :buy
+      get  :check
     end
   end
 
