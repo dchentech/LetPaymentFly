@@ -4,6 +4,12 @@
 :javascript
   var item_id = #{params[:id].to_json};
 
+  // 支付状态
+  // 1. waiting
+  // 2.1 success
+  // 2.2 error
+  // 2.3 timeout
+
   $(document).ready(function() {
     // loop status
     var status_int = 0;
@@ -25,6 +31,7 @@
           clearInterval(status_interval);
         }
 
+        // TODO add other cases.
         if (data.status == 'success') {
           $(".status").text("Payment success!");
           clearInterval(check_interval);
